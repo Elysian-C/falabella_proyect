@@ -124,7 +124,6 @@ def extract_to_blob(req: func.HttpRequest) -> func.HttpResponse:
 
     try:
         # 2. Configurar conexión a Blob Storage de forma segura
-        # Lee la cadena de conexión desde las variables de entorno de Azure
         connection_string = os.environ.get("STORAGE_CONN_STRING")
         
         if not connection_string:
