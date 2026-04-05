@@ -131,11 +131,11 @@ def extract_to_blob(req: func.HttpRequest) -> func.HttpResponse:
             logging.error("No se encontró la variable de entorno STORAGE_CONN_STRING")
             return func.HttpResponse("Error de configuración interna del servidor.", status_code=500)
 
-        container_name = "falabella-input"
+        container_name = "bronze"
         
         # Generar nombre de archivo único
         fecha_str = datetime.now().strftime("%Y%m%d")
-        blob_name = f"falabella/laptops_{fecha_str}.parquet"
+        blob_name = f"laptops_gamer_{fecha_str}.parquet"
 
         # 3. Convertir DataFrame a Parquet en memoria
         parquet_buffer = io.BytesIO()
