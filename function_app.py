@@ -89,13 +89,17 @@ def scrap_tecnologia_falabella_infinito():
                         pass
 
                 todos_los_productos.append({
+                    "ID_Producto": p.get("productId"),
                     "Marca": p.get("brand"),
                     "Nombre": p.get("displayName"),
                     "Precio_CMR": precios_dict["CMR"],
                     "Precio_Internet": precios_dict["Internet"],
                     "Precio_Normal": precios_dict["Normal"],
+                    "Seller": p.get("sellerName"),
+                    "Rating": p.get("rating"),
+                    "Reviews": p.get("totalReviews"),
                     "Descuento_Oficial": porcentaje_limpio,
-                    "ID_Producto": p.get("productId"),
+                    "Es_Patrocinado": p.get("isSponsored"),
                     "Fecha_Extraccion": datetime.now().strftime("%Y-%m-%d")
                 })
             
@@ -130,7 +134,7 @@ def extract_to_blob(req: func.HttpRequest) -> func.HttpResponse:
         container_name = "falabella-input"
         
         # Generar nombre de archivo único
-        fecha_str = datetime.now().strftime("%Y%m%d_%H%M%S")
+        fecha_str = datetime.now().strftime("%Y%m%d")
         blob_name = f"falabella/laptops_{fecha_str}.parquet"
 
         # 3. Convertir DataFrame a Parquet en memoria
